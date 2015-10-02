@@ -1,6 +1,6 @@
 Array = require './arrayIO'
 Dict = require './dictIO'
-
+File = require './fileIO'
 
 a = new Array
 
@@ -31,4 +31,20 @@ b.write {size: 'XS', type: 'dress'}
 
 content = b.read 'color'
 console.log content
+
+a = new File './diary'
+
+a.write "hello world"
+
+content = a.read 3, 10
+console.log content
+
+b = new File './diary'
+
+b.write "what a beautiful day"
+
+content = b.read 3, 10
+console.log content
+
+
 

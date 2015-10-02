@@ -1,16 +1,19 @@
 ###
-  Abstract arrayIO and dictIO
+  Abstract arrayIO and fileIO
 ###
 
+fs = require 'fs'
 _ = require 'underscore'
 
 class TrivialIO
   constructor: (@storage) ->
     @mem = _.clone @storage
 
-  read: () ->
+  read: (from, to) ->
+    @storage[from..to]
 
   write: (data) ->
+    @storage += data
 
   buffer: () ->
     @storage
@@ -18,28 +21,25 @@ class TrivialIO
   clean: () ->
     @storage = @mem
 
-class DictIO extends TrivialIO
-  constructor: () ->
-    super {}
-
-  read: () ->
-    _.pick @storage, arguments
-
-  write: (data) ->
-    _.extendOwn @storage, data
 
 
 class ArrayIO extends TrivialIO
   constructor: () ->
-    super []
+    super ""
 
-  read: (from, to) ->
-    @storage[from..to]
+class FileIO extends TrivialIO
+  constructor: (@_filename) ->
+    super (fs.readFileSync @_filename).toString()
 
   write: (data) ->
-    _.each data, (_v) =>
-     @storage.push _v
+    super data
+    fs.writeFileSync @_filename, @storage
+  
+  clean: () ->
+    super
+    @write ""
 
 module.exports =
-  DictIO: DictIO
+  FileIO: FileIO
   ArrayIO: ArrayIO
+  TrivialIO: TrivialIO 
