@@ -4,8 +4,8 @@ class DictIO
   constructor: () ->
     @storage = {}
 
-  read: (key) ->
-    @storage[key]
+  read: () ->
+    _.pick @storage, arguments
 
   write: (data) ->
     _.extendOwn @storage, data

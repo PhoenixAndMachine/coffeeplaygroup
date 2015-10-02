@@ -1,6 +1,5 @@
-Array = require './ENCAP/arrayIO'
-Dict = require './ENCAP/dictIO'
-
+Array = require './arrayIO'
+Dict = require './dictIO'
 
 
 a = new Array
@@ -32,5 +31,4 @@ b.write {size: 'XS', type: 'dress'}
 
 content = b.read 'color'
 console.log content
-
 
