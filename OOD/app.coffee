@@ -1,8 +1,16 @@
-IO = require './encapsulation'
+Array = require './ENCAP/arrayIO'
 
-arrayIO = new IO {}
+a = new Array
 
-arrayIO.write "hello world"
+a.write "hello world"
 
-content = arrayIO.read 3, 10
+content = a.read 3, 10
 console.log content
+
+b = new Array
+
+b.write "what a beautiful day"
+
+content = b.read 3, 10
+console.log content
+
