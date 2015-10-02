@@ -24,4 +24,4 @@ e = new Employee("phoenix", 28)
 console.log e.getName()
 console.log e.getAge()
 
-module.exports = @ 
+module.exports = @
