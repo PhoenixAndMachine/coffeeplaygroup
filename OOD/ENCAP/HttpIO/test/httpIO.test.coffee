@@ -8,6 +8,19 @@ describe 'Create a client', () ->
     local.connected.should.be.false
     done()
 
+  it 'client connect', (done) ->
+    local = new Client 'Gucci'
+    local.connect()
+    local.connected.should.be.true
+    done()
+
+  it 'client disconnect', (done) ->
+    local = new Client 'Gucci'
+    local.connect()
+    local.connected.should.be.true
+    local.disconnect()
+    local.connected.should.be.false
+    done()
 
 ###
 
